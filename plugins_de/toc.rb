@@ -4,7 +4,7 @@ class TOC
     return self
   end
   def run(content)
-    content += "\n TOC Plugin ran \n"
+    content += "TOC Plugin ran"
     return content
   end
 end

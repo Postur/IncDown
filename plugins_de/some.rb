@@ -4,7 +4,7 @@ class Some
     return self
   end
   def run(content)
-    content += "\n Some Plugin ran \n"
+    content += "Some Plugin ran"
     return content
   end
 end
