@@ -1,7 +1,17 @@
-
+require('yaml')
 
 module IncDownCore
 module Plugin
+  def self.parse_yaml(content)
+
+    front_matter =  YAML.load(content)
+  
+    variables = front_matter['variables']
+    plugins = front_matter["plugins"]
+
+    content = content.gsub(/\A---.*?---/m,'')
+    return content, variables, plugins
+  end
   def self.hello
     'hello'
   end

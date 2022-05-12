@@ -2,12 +2,14 @@ GEM
   remote: https://rubygems.org/
   specs:
     commonmarker (0.23.4)
+    yaml (0.2.0)
 
 PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
   commonmarker
+  yaml
 
 BUNDLED WITH
    2.3.13
