@@ -1,0 +1,6 @@
+--title "IncDownCore Documentation"
+--no-private
+--markup markdown
+src/**/*.rb
+-
+docs/*.md
