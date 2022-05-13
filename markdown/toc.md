@@ -4,7 +4,9 @@ plugins: # this is where you import plugins.
     header: "value of some setting of toc" # Plugin setting
 ---
 
-# TOC (Table of Contents)
+# TOC Table of Contents
+
+[link](#usage)
 
 ## usage
 

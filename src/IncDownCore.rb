@@ -5,9 +5,9 @@ module IncDownCore
   $: << File.expand_path('../../plugins/', __FILE__)
   # Constants
  
-  filepath = ARGV[0]
-  content = File.read(filepath)
-  destination = ARGV[1] ? ARGV[1] : File.join(File.dirname(filepath),File.basename(filepath,'.*')) 
+  FILEPATH = ARGV[0]
+  content = File.read(FILEPATH)
+  Destination = ARGV[1] ? ARGV[1] + '.html' : File.join(File.dirname(FILEPATH),File.basename(FILEPATH,'.*')) +'.html'
 
 
 
@@ -23,7 +23,8 @@ module IncDownCore
   
 
 
-  html = CommonMarker.render_html(content, :DEFAULT)
-  File.write((destination +'.html'), html)
+  html = CommonMarker.render_html(content,:SOURCEPOS)
+
+  File.write((Destination), html)
  
 end

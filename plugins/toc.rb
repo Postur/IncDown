@@ -7,16 +7,16 @@ class TOC
     doc = CommonMarker.render_doc(content)
 
     toc = ''
-
+    p IncDownCore::Destination
     doc.walk do |node|
       if node.type == :header
         node.each do |subnode|
-          toc += "\n#{'  '*node.header_level} - [#{subnode.string_content}](#{subnode.string_content})" #"\n #{' '*node['header_level']} - #{node['children'][0]['string_content']}"
+          toc += "\n#{'  '*node.header_level} - [#{subnode.string_content}](##{subnode.string_content.gsub(' ','_')})"
         end
       end
     end
 
-    puts toc
+
 
     toc
   end
