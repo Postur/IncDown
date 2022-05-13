@@ -1,11 +1,14 @@
-class Some
-  def initialize()
+# frozen_string_literal: true
 
-    return self
+# some class
+class Some
+  def initialize
+    self
   end
+
   def run(content)
-    content += "Some Plugin ran"
-    return content
+    content += 'Some Plugin ran'
+    content
   end
 end
 IncDownCore::Plugin.register(Some)

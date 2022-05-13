@@ -1,6 +1,12 @@
 {
+  "[ruby]": {
+    "editor.defaultFormatter": "castwide.solargraph"
+  },
+  "solargraph.formatting": true,
+  "solargraph.diagnostics": true,
   "editor.formatOnSave": true,
   "[markdown]": {
     "editor.formatOnSave": false
-  }
+  },
+  "cSpell.words": ["rubocop"]
 }
