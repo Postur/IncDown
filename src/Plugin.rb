@@ -2,6 +2,7 @@ require('yaml')
 
 module IncDownCore
 module Plugin
+  @@plugins_path = '../plugins/'
   def self.parse_yaml(content)
 
     front_matter =  YAML.load(content)
@@ -12,27 +13,21 @@ module Plugin
     content = content.gsub(/\A---.*?---/m,'')
     return content, variables, plugins
   end
-  def self.hello
-    'hello'
-  end
   @@plugins = []
   def self.plugins
     return @@plugins
   end
-  def self.load_plugins()
-    Dir["plugins/*.rb"].each do |path|
-      load_plugin(path)
-    end
-    puts @@plugins
-  end
-  def self.load_plugin(plugin)
+  def self.load_plugin(plugin_to_load)
+    plugin = {}
+    plugin[:name] = plugin_to_load[0]
+    plugin[:arguments] = plugin_to_load[1]
 
-    load(plugin)
+    load(plugin[:name]+'.rb')
     
     # IncDownCore::Plugin.plugins.push(plugin)
   end
-  def self.register(mod)
-    @@plugins.push(mod.new)
+  def self.register(class_to_register)
+    @@plugins.push(class_to_register.new)
   end
   def self.run_plugins(content)
     @@plugins.each do |plugin|

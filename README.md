@@ -38,3 +38,11 @@ IncDown core should have as few functions as possible, and mostly adhear to the 
 # Features
 
   - import plugins to change the parser.
+
+
+## Core design
+
+first Yaml gets striped and parsed.
+
+
+The CommonMark renderer gets called last
