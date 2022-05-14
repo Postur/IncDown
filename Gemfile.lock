@@ -22,7 +22,10 @@ GEM
       parser (>= 3.1.1.0)
     ruby-progressbar (1.11.0)
     unicode-display_width (2.1.0)
+    webrick (1.7.0)
     yaml (0.2.0)
+    yard (0.9.27)
+      webrick (~> 1.7.0)
 
 PLATFORMS
   x64-mingw32
@@ -31,6 +34,7 @@ DEPENDENCIES
   commonmarker
   rubocop (~> 1.29)
   yaml
+  yard
 
 BUNDLED WITH
    2.3.13

@@ -4,6 +4,20 @@ require_relative 'Plugin'
 require 'commonmarker'
 # Top level module
 module IncDownCore
+  class IncHtmlRenderer < CommonMarker::HtmlRenderer
+    def initialize
+      super
+      @headerid = 1
+    end
+
+    def header(node)
+      block do
+        out('<h', node.header_level, ' id="', @headerid, '">',
+            :children, '</h', node.header_level, '>')
+        @headerid += 1
+      end
+    end
+  end
   # setup
   $LOAD_PATH << File.expand_path('../plugins', __dir__)
   # Constants
@@ -28,7 +42,9 @@ module IncDownCore
   # p content
   content = IncDownCore::Plugin.run_plugins(content)
 
-  html = CommonMarker.render_html(content)
+  # html = CommonMarker.render_html(content)
+  RENDERER = IncHtmlRenderer.new
+  html = RENDERER.render(CommonMarker.render_doc(content))
 
   File.write(DESTINATION, html)
 end

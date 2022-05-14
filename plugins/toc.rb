@@ -9,14 +9,16 @@ class TOC
   def generate_toc(content)
     toc = ''
     # p IncDownCore::DESTINATION
+    headerid = 1
     CommonMarker.render_doc(content).walk do |node|
       if node.type == :header
         node.each do |subnode|
-          toc += "\n#{'  ' * node.header_level} - [#{subnode.string_content}](##{subnode.string_content.gsub(' ',
-                                                                                                             '_')})"
+          toc += "\n#{'  ' * node.header_level} - [#{subnode.string_content}](##{headerid})"
         end
+        headerid += 1
       end
     end
+    p toc
     toc
   end
 

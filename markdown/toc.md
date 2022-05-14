@@ -6,6 +6,8 @@ plugins: # this is where you import plugins.
 
 # TOC Table of Contents
 
+  - [something](#1)
+
 [link](#usage)
 
 ## usage
