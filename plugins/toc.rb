@@ -2,9 +2,7 @@
 
 # Table of contents class
 class TOC
-  def initialize
-    self
-  end
+  def initialize; end
 
   def generate_toc(content)
     toc = ''
