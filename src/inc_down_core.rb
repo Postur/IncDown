@@ -19,15 +19,21 @@ module IncDownCore
 
     p 'will try to load plugins:'
 
-    plugins_to_load.each do |plugin|
-      p plugin[0]
+    unless plugins_to_load.nil?
+      plugins_to_load.each do |plugin|
+        p plugin[0]
+      end
+      plugin_runner = IncDownCore::Plugin.new(plugins_to_load)
+      content = plugin_runner.run_plugins(content, in_file, out_file)
     end
 
-    plugin_runner = IncDownCore::Plugin.new(plugins_to_load)
+    # html = CommonMarker.render_html(content)
+    renderer = IncHtmlRenderer.new
 
-    p plugin_runner.plugins
+    html = renderer.render(CommonMarker.render_doc(content, :UNSAFE))
 
-    p content = plugin_runner.run_plugins(content)
+    File.write(out_file, html)
+    content
   end
 
   class IncHtmlRenderer < CommonMarker::HtmlRenderer

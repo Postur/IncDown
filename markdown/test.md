@@ -8,4 +8,8 @@ plugins:
 
 [toc]
 
-includer comes next
+# some other heading
+
+[includer](./includer.md)
+
+some paragraph

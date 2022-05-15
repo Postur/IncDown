@@ -32,7 +32,7 @@ module IncDownCore
       plugin[:arguments] = plugin_to_load[1]
 
       p plugin
-      ARGV[3] = self
+      ARGV[2] = self
       load("#{plugin[:name]}.rb")
 
       # @plugins.push(plugin)
@@ -40,12 +40,12 @@ module IncDownCore
 
     def register(class_to_register)
       p "registering #{class_to_register}"
-      @plugins.push(class_to_register.new(self))
+      @plugins.push(class_to_register.new)
     end
 
-    def run_plugins(content)
+    def run_plugins(content, in_file, out_file)
       @plugins.each do |plugin|
-        content = plugin.run(content)
+        content = plugin.run(content, in_file, out_file)
       end
       content
     end

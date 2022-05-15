@@ -1,0 +1,6 @@
+<h1 id="1">example</h1>
+<h1 id="2">this is an included file heading</h1>
+<p>paragraph included</p>
+<h2 id="3">heading 2 included</h2>
+<p>this is a paragraph from main</p>
+<p>this is html</p>
