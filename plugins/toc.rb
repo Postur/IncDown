@@ -6,7 +6,6 @@ class TOC
 
   def generate_toc(content)
     toc = ''
-    # p IncDownCore::DESTINATION
     headerid = 1
     CommonMarker.render_doc(content).walk do |node|
       if node.type == :header
@@ -16,7 +15,6 @@ class TOC
         headerid += 1
       end
     end
-    p toc
     toc
   end
 
