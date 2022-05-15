@@ -4,37 +4,46 @@ require('yaml')
 
 module IncDownCore
   # Plugin class
-  module Plugin
+  class Plugin
+    attr_reader :plugins
+
+    def initialize(plugins)
+      @plugins = []
+      p 'Loading plugins...'
+      plugins.each do |plugin|
+        p "loading plugin: #{plugin}"
+        load_plugin(plugin)
+      end
+    end
+
     @plugins_path = '../plugins/'
     def self.parse_yaml(content)
       front_matter = YAML.safe_load(content)
 
-      variables = front_matter['variables']
       plugins = front_matter['plugins']
 
       content = content.gsub(/\A---.*?---/m, '')
-      [content, variables, plugins]
-    end
-    @plugins = []
-    def self.plugins
-      @plugins
+      [content, plugins]
     end
 
-    def self.load_plugin(plugin_to_load)
+    def load_plugin(plugin_to_load)
       plugin = {}
       plugin[:name] = plugin_to_load[0]
       plugin[:arguments] = plugin_to_load[1]
 
+      p plugin
+      ARGV[3] = self
       load("#{plugin[:name]}.rb")
 
-      # IncDownCore::Plugin.plugins.push(plugin)
+      # @plugins.push(plugin)
     end
 
-    def self.register(class_to_register)
-      @plugins.push(class_to_register.new)
+    def register(class_to_register)
+      p "registering #{class_to_register}"
+      @plugins.push(class_to_register.new(self))
     end
 
-    def self.run_plugins(content)
+    def run_plugins(content)
       @plugins.each do |plugin|
         content = plugin.run(content)
       end

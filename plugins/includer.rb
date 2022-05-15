@@ -2,8 +2,8 @@
 
 # some class
 class Includer
-  def initialize
-    self
+  def initialize(plugin_manager)
+    plugin_manager.register(Includer)
   end
 
   def run(content)
@@ -18,9 +18,8 @@ class Includer
                         matches[2]
 
                       end
-    included_content = `ruby #{IncDownCore::INC_DOWN_CORE_PATH} #{file_to_include}`
-
+    included_content = `ruby #{IncDownCore::INC_DOWN_CORE_PATH} #{file_to_include} temp something`
+    p included_content
     content.gsub(/\n\[includer\]\(.*\)\n/m, included_content)
   end
 end
-IncDownCore::Plugin.register(Includer)

@@ -2,7 +2,11 @@
 
 # Table of contents class
 class TOC
-  def initialize; end
+  def initialize(_plugin_manager)
+    p 'initializing TOC plugin'
+    p 'registering TOC plugin'
+    # plugin_manager.register(TOC)
+  end
 
   def generate_toc(content)
     toc = ''
@@ -24,4 +28,4 @@ class TOC
     content.gsub(/\n\[toc\]\n?/, toc)
   end
 end
-IncDownCore::Plugin.register(TOC)
+ARGV[3].register(TOC)
